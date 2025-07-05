@@ -5,22 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boss</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&family=Fredoka:wght@600&display=swap');
         body {
-            background: linear-gradient(135deg, #ffe5ec 60%, #e3e6f3 100%);
-            font-family: 'Segoe UI', 'Prompt', Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 60%, #cde8ff 100%);
+            font-family: 'Prompt', 'Fredoka', 'Segoe UI', Arial, sans-serif;
             min-height: 100vh;
             margin: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .kawaii-face {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            z-index: 2;
+            margin-top: 18px;
+            pointer-events: none;
+            user-select: none;
+        }
+        .kawaii-face span {
+            font-size: 2.2rem;
+            margin: 0 6px;
+            animation: blink 2.5s infinite;
+        }
+        @keyframes blink {
+            0%, 90%, 100% { opacity: 1;}
+            92%, 98% { opacity: 0.2;}
         }
         .linktree-container {
-            max-width: 400px;
-            margin: 60px auto;
+            max-width: 430px;
+            margin: 80px auto 40px auto;
             background: #fff;
-            border-radius: 28px;
-            box-shadow: 0 8px 32px rgba(232,73,29,0.10), 0 2px 8px #e8491d11;
-            padding: 44px 28px 32px 28px;
+            border-radius: 44px;
+            box-shadow: 0 12px 40px #e8491d22, 0 2px 8px #e8491d11;
+            padding: 56px 32px 40px 32px;
             text-align: center;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            border: 4px solid #ffd6e0;
         }
         /* Bubble decoration */
         .bubble {
@@ -30,128 +53,250 @@
             z-index: 0;
             pointer-events: none;
         }
-        .bubble1 {
-            width: 90px; height: 90px;
-            background: #e8491d;
-            top: -30px; left: -30px;
-        }
-        .bubble2 {
-            width: 60px; height: 60px;
-            background: #ffb3c6;
-            bottom: 10px; right: -20px;
-        }
-        .bubble3 {
-            width: 40px; height: 40px;
-            background: #a3c9f9;
-            bottom: 40px; left: 20px;
-        }
+        .bubble1 { width: 120px; height: 120px; background: #e8491d; top: -50px; left: -50px; }
+        .bubble2 { width: 80px; height: 80px; background: #ffb3c6; bottom: 10px; right: -30px; }
+        .bubble3 { width: 60px; height: 60px; background: #a3c9f9; bottom: 60px; left: 10px; }
+        .bubble4 { width: 44px; height: 44px; background: #ffe066; top: 30px; right: 10px; }
+        .bubble5 { width: 36px; height: 36px; background: #baffc9; top: 80px; left: 30px; }
+        /* เพิ่ม bubble เพิ่มเติม */
+        .bubble6 { width: 38px; height: 38px; background: #ffb3c6; top: 180px; right: -18px; }
+        .bubble7 { width: 28px; height: 28px; background: #cde8ff; bottom: 120px; left: -14px; }
+        .bubble8 { width: 22px; height: 22px; background: #ffe066; bottom: 40px; right: 60px; }
+        .bubble9 { width: 18px; height: 18px; background: #e8491d; top: 220px; left: 60px; }
         .avatar {
-            width: 110px;
-            height: 110px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 18px;
-            border: 4px solid #e8491d;
-            box-shadow: 0 4px 18px #e8491d33;
+            border: 6px solid #ffb3c6;
+            box-shadow: 0 4px 18px #e8491d33, 0 0 0 8px #fff6fa;
             background: #fff;
             z-index: 1;
             position: relative;
             transition: transform 0.2s;
+            animation: float 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes float {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-12px);}
         }
         .avatar:hover {
-            transform: scale(1.07) rotate(-4deg);
-            box-shadow: 0 8px 32px #e8491d33;
+            transform: scale(1.12) rotate(-8deg);
+            box-shadow: 0 12px 32px #e8491d33, 0 0 0 12px #ffe5ec;
         }
         h2 {
-            margin: 0 0 8px 0;
+            margin: 0 0 10px 0;
             color: #e8491d;
-            font-size: 2rem;
-            letter-spacing: 1px;
+            font-size: 2.3rem;
+            letter-spacing: 1.5px;
             font-weight: 700;
             z-index: 1;
             position: relative;
-            text-shadow: 1px 2px 8px #ffd6e0;
+            text-shadow: 1px 2px 12px #ffd6e0;
+            font-family: 'Fredoka', 'Prompt', sans-serif;
         }
         .desc {
             color: #888;
             margin-bottom: 28px;
-            font-size: 1.1rem;
+            font-size: 1.13rem;
             z-index: 1;
             position: relative;
+            background: #fff6fa;
+            border-radius: 22px;
+            padding: 18px 14px;
+            box-shadow: 0 2px 12px #ffb3c622;
+            border: 2px dashed #ffb3c6;
+            font-family: 'Prompt', sans-serif;
+            line-height: 1.7;
         }
         .linktree-link {
             display: block;
             background: linear-gradient(90deg, #ffe5ec 60%, #f3f7ff 100%);
             color: #e8491d;
             text-decoration: none;
-            font-weight: 600;
-            border-radius: 18px;
-            padding: 16px 0;
-            margin: 14px 0;
-            font-size: 1.13rem;
-            box-shadow: 0 2px 8px #e8491d11;
+            font-weight: 700;
+            border-radius: 22px;
+            padding: 18px 0;
+            margin: 16px 0;
+            font-size: 1.18rem;
+            box-shadow: 0 2px 12px #e8491d11;
             transition: background 0.18s, color 0.18s, transform 0.18s;
             position: relative;
             z-index: 1;
-            border: 2px solid #ffd6e0;
+            border: 2.5px solid #ffd6e0;
+            letter-spacing: 0.7px;
+            font-family: 'Fredoka', 'Prompt', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .linktree-link:before {
+            content: "★";
+            color: #ffe066;
+            font-size: 1.1em;
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-12deg);
+            opacity: 0.7;
+            pointer-events: none;
         }
         .linktree-link:hover {
             background: linear-gradient(90deg, #e8491d 60%, #ffb3c6 100%);
             color: #fff;
-            transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 6px 18px #e8491d33;
+            transform: translateY(-2px) scale(1.06) rotate(-2deg);
+            box-shadow: 0 8px 24px #e8491d33;
             border-color: #e8491d;
         }
+        .linktree-link:hover:before {
+            color: #fff6fa;
+            text-shadow: 0 0 8px #ffe066;
+        }
         .socials {
-            margin-top: 32px;
+            margin-top: 36px;
             z-index: 1;
             position: relative;
         }
         .socials a {
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 12px;
             transition: transform 0.18s;
         }
         .socials img {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: #fff;
             box-shadow: 0 2px 8px #e8491d22;
             transition: box-shadow 0.18s, transform 0.18s;
-            padding: 4px;
+            padding: 5px;
+            border: 2px solid #ffe066;
         }
         .socials a:hover img {
-            box-shadow: 0 4px 16px #e8491d44;
-            transform: scale(1.13) rotate(-8deg);
+            box-shadow: 0 6px 18px #e8491d44;
+            transform: scale(1.18) rotate(-10deg);
             background: #ffe5ec;
+            border-color: #e8491d;
         }
-        /* เพิ่มหัวใจน่ารัก */
+        /* หัวใจน่ารัก */
         .cute-heart {
             color: #e8491d;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            font-size: 2.7rem;
+            margin-bottom: 12px;
             animation: heartBeat 1.2s infinite;
             display: inline-block;
+            filter: drop-shadow(0 2px 12px #ffb3c6);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 12px #ffe066, 0 2px 8px #ffb3c6;
         }
         @keyframes heartBeat {
             0%, 100% { transform: scale(1);}
-            20% { transform: scale(1.18);}
-            40% { transform: scale(0.95);}
-            60% { transform: scale(1.12);}
+            20% { transform: scale(1.22);}
+            40% { transform: scale(0.93);}
+            60% { transform: scale(1.15);}
             80% { transform: scale(0.98);}
+        }
+        /* doodle */
+        .doodle {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            width: 60px;
+            opacity: 0.28;
+            z-index: 0;
+        }
+        /* เพิ่มสติกเกอร์ */
+        .sticker {
+            position: absolute;
+            left: -18px;
+            bottom: 18px;
+            width: 60px;
+            z-index: 1;
+            transform: rotate(-12deg);
+            filter: drop-shadow(0 2px 8px #ffb3c6);
+            pointer-events: none;
+        }
+        /* เพิ่มสติกเกอร์บน */
+        .sticker-top {
+            position: absolute;
+            right: -22px;
+            top: -22px;
+            width: 64px;
+            z-index: 2;
+            transform: rotate(18deg);
+            filter: drop-shadow(0 2px 8px #ffe066);
+            pointer-events: none;
+        }
+        /* เพิ่ม emoji ลอย */
+        .float-emoji {
+            position: absolute;
+            font-size: 2.1rem;
+            opacity: 0.7;
+            animation: floatEmoji 3.5s infinite alternate;
+            pointer-events: none;
+            z-index: 3;
+        }
+        .float-emoji.e1 { left: 12px; top: 12px; animation-delay: 0s;}
+        .float-emoji.e2 { right: 18px; top: 60px; animation-delay: 1s;}
+        .float-emoji.e3 { left: 30px; bottom: 60px; animation-delay: 2s;}
+        .float-emoji.e4 { right: 40px; bottom: 30px; animation-delay: 1.5s;}
+        @keyframes floatEmoji {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(-18px) scale(1.15);}
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .linktree-container {
+                max-width: 98vw;
+                padding: 32px 4vw 24px 4vw;
+            }
+            .avatar { width: 90px; height: 90px;}
+            .socials img { width: 32px; height: 32px;}
+            .sticker, .doodle, .sticker-top { width: 38px;}
+            .float-emoji { font-size: 1.3rem;}
         }
     </style>
 </head>
 <body>
+    <div class="kawaii-face">
+        <span style="font-size:2.3rem; margin:0 6px;">(｡♥‿♥｡)</span>
+        <span style="font-size:2.1rem; margin:0 6px;">(づ｡◕‿‿◕｡)づ</span>
+        <span style="font-size:2.1rem; margin:0 6px;">(=^-ω-^=)</span>
+        <span style="font-size:2.1rem; margin:0 6px;">(≧◡≦)</span>
+        <span style="font-size:2.1rem; margin:0 6px;">(✿◕‿◕)</span>
+    </div>
     <div class="linktree-container">
+        <!-- Bubbles -->
         <span class="bubble bubble1"></span>
         <span class="bubble bubble2"></span>
         <span class="bubble bubble3"></span>
+        <span class="bubble bubble4"></span>
+        <span class="bubble bubble5"></span>
+        <span class="bubble bubble6"></span>
+        <span class="bubble bubble7"></span>
+        <span class="bubble bubble8"></span>
+        <span class="bubble bubble9"></span>
+        <!-- Floating Emojis -->
+        <span class="float-emoji e1">🍰</span>
+        <span class="float-emoji e2">✨</span>
+        <span class="float-emoji e3">🐾</span>
+        <span class="float-emoji e4">🌸</span>
+        <span class="float-emoji" style="left:50%;top:120px;animation-delay:2.7s;">🧸</span>
+        <span class="float-emoji" style="right:60px;top:180px;animation-delay:1.9s;">🦄</span>
+        <span class="float-emoji" style="left:80px;bottom:120px;animation-delay:3.1s;">🍭</span>
+        <span class="float-emoji" style="right:90px;bottom:100px;animation-delay:2.2s;">🧁</span>
+        <!-- Animated Heart Rain -->
+        <div id="heart-rain"></div>
         <div class="cute-heart">❤</div>
-        <img src="https://iili.io/FciRBku.th.jpg"  alt="Avatar" class="avatar">
-        <h2>boss</h2>
-        <div class="desc">สมัยผมอายุ0-7ผมเกิดวันที่10พฤจิกายน2546ที่ จังหวัดสระแก้วเวลา8:39ผมเกิดมาเท่าที่จำความ ได้น่าจะร้องไห้ช่วงเข้าอนุบาลผมได้มีเพื่อนชื่อว่า ปอนเป็นเพื่อนที่อยู่หมู่บ้านเดี่ยวกันทุกเย็นพ่อแม่ ผมจะพาไปเล่นกับคนชื่อป้อนผมได้ไผเล่นกอง ทรายที่โรงเรียนแล้วได้สร้างปราสาทกันอย่างสนุก สนานทุกๆวันจนขึ้นป.1ได้มีงานปีใหม่ผมได้จับ สลากได้รางรัลใหญ่เป็นกระเป๋าผมดีใจมากครับ :D</div>
+        <img src="https://iili.io/FciRBku.th.jpg"  alt="Avatar" class="avatar animated-avatar">
+        <h2>thana_boss</h2>
+        <div class="desc">
+            สมัยผมอายุ 0-7 ผมเกิดวันที่ 10 พฤศจิกายน 2546 ที่จังหวัดสระแก้ว เวลา 8:39<br>
+            ผมเกิดมาเท่าที่จำความได้น่าจะร้องไห้ ช่วงเข้าอนุบาลผมได้มีเพื่อนชื่อว่า ปอน เป็นเพื่อนที่อยู่หมู่บ้านเดียวกัน<br>
+            ทุกเย็นพ่อแม่ผมจะพาไปเล่นกับคนชื่อปอน ผมได้ไปเล่นกองทรายที่โรงเรียนแล้วได้สร้างปราสาทกันอย่างสนุกสนานทุกๆวัน<br>
+            จนขึ้น ป.1 ได้มีงานปีใหม่ ผมได้จับสลากได้รางวัลใหญ่เป็นกระเป๋า ผมดีใจมากครับ :D
+        </div>
         <a class="linktree-link" href="https://www.facebook.com/tanatorn.chansingoen" target="_blank">Facebook</a>
         <a class="linktree-link" href="https://www.instagram.com/thana_46_/" target="_blank">Instagram</a>
         <div class="socials">
@@ -162,6 +307,66 @@
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram">
             </a>
         </div>
+        <!-- doodle ตกแต่ง -->
+        <svg class="doodle" viewBox="0 0 64 64" fill="none">
+            <path d="M8 56 Q32 8 56 56" stroke="#e8491d" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="32" cy="56" r="3" fill="#ffb3c6"/>
+        </svg>
     </div>
+    <script>
+        // Heart rain effect
+        const heartRain = document.getElementById('heart-rain');
+        for(let i=0;i<18;i++){
+            let heart = document.createElement('span');
+            heart.innerText = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random()*100 + 'vw';
+            heart.style.top = (Math.random()*-20-5) + 'vh';
+            heart.style.fontSize = (Math.random()*1.2+1.2) + 'rem';
+            heart.style.opacity = 0.7;
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = `rainHeart ${2.5+Math.random()*2.5}s linear ${Math.random()*2}s infinite`;
+            heartRain.appendChild(heart);
+        }
+    </script>
+    <style>
+        #heart-rain span {
+            z-index: 9999;
+            filter: drop-shadow(0 2px 8px #ffb3c6);
+        }
+        @keyframes rainHeart {
+            0% { transform: translateY(0);}
+            100% { transform: translateY(110vh) rotate(24deg);}
+        }
+        /* ปุ่มลอยขยับ */
+        .linktree-link {
+            animation: popBtn 2.2s infinite alternate;
+        }
+        .linktree-link:nth-child(1) { animation-delay: 0.2s;}
+        .linktree-link:nth-child(2) { animation-delay: 0.5s;}
+        @keyframes popBtn {
+            0% { transform: scale(1);}
+            100% { transform: scale(1.04) rotate(-2deg);}
+        }
+        /* เอฟเฟกต์ sparkle เมื่อ hover */
+        .linktree-link:hover::after {
+            content: " ✨";
+            animation: sparkle 0.7s linear;
+        }
+        @keyframes sparkle {
+            0% { opacity: 0;}
+            40% { opacity: 1;}
+            100% { opacity: 0;}
+        }
+        /* รูปโปรไฟล์ขยับโยกซ้ายขวา */
+        .animated-avatar {
+            animation: swing 2.5s infinite alternate cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes swing {
+            0% { transform: translateY(0) rotate(-6deg);}
+            50% { transform: translateY(-10px) rotate(6deg);}
+            100% { transform: translateY(0) rotate(-6deg);}
+        }
+    </style>
 </body>
 </html>
